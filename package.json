@@ -1,0 +1,16 @@
+{
+    "name": "mini_electron",
+    "version": "1.0.0",
+    "description": "",
+    "main": "main.js",
+    "scripts": {
+        "dev": "electron .",
+        "create": "node cli.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@electron/remote": "^1.1.0",
+        "electron": "^12.0.2"
+    }
+}

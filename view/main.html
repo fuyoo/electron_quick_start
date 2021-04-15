@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高效管理平台</title>
+    <script src="../static/js/vue.min.js"></script>
+    <script src="../static/js/iview.min.js"></script>
+    <link rel="stylesheet" href="../static/css/iview.css">
+    <style>
+        html,
+        body {
+            background-color: transparent !important;
+        }
+        
+        #app {
+            padding: 20px;
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+
+<body>
+    <elec-template>
+        <div id="app">
+            <h1>main窗口</h1>
+        </div>
+    </elec-template>
+    <script>
+        window.addEventListener('load', function() {
+            window.app = new Vue({
+                el: "#app",
+                data: {
+                    list: []
+                },
+                mounted() {
+
+                },
+                methods: {
+
+                }
+            })
+        })
+        window.addEventListener('beforeunload', e => {
+            try {
+                // window.app.$Modal.confirm({
+                //     title: "确定要关闭吗？",
+                //     onOk: function() {
+                //         process.close()
+                //     },
+                // })
+            } catch (e) {
+                console.error(e)
+            }
+
+        })
+    </script>
+</body>
+
+</html>

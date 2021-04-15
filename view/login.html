@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录</title>
+    <script src="../static/js/vue.min.js"></script>
+    <script src="../static/js/iview.min.js"></script>
+    <link rel="stylesheet" href="../static/css/iview.css">
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        #app {
+            width: 260px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <i-form label-width="0">
+            <form-item>
+                <i-input v-model="form.account" placeholder="请输入用户名">
+                    <Icon type="md-person" slot="prepend" />
+                    </Input>
+            </form-item>
+            <form-item>
+                <i-input :type="show?'text':'password'" v-model="form.passWord" placeholder="请输入密码">
+                    <Icon type="md-lock" slot="prepend" />
+                    <Icon style="cursor: pointer" @click="show = !show" :type="!show?'md-eye':'md-eye-off'" slot="append"></Icon>
+                </i-input>
+            </form-item>
+            <form-item>
+                <i-button style="width: 49%;" :loading="loading" @click="login" size="mini" type="primary">登录</i-button>
+                <i-button style="width: 49%;" @click="resize" size="mini">重置</i-button>
+            </form-item>
+        </i-form>
+    </div>
+    <script>
+        window.addEventListener('load', function() {
+            new Vue({
+                el: "#app",
+                data: {
+                    form: {
+                        account: "fuyoo",
+                        passWord: "123456"
+                    },
+                    show: false,
+                    loading: false,
+                },
+                methods: {
+                    login() {
+                        this.loading = true
+                            // ajax
+                        process.request({
+                                body: JSON.stringify(this.form),
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                }
+                            })
+                            .then(res => {
+                                console.log(res)
+                            })
+                            .finally(() => {
+                                this.loading = false
+                            })
+                            // 模拟登录
+                        setTimeout(() => {
+                            // 登录成功打开main函数
+                            process.open('main')
+                                //关闭当前窗口
+                            process.close()
+                        }, 2 * 1000)
+                    },
+                    resize() {
+                        this.form = {}
+                    }
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>
